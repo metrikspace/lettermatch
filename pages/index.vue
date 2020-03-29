@@ -182,7 +182,7 @@ div.top {
       font-size: 10rem;
     }
     @media only screen and (orientation: landscape) {
-      font-size: 3.4rem;
+      font-size: 2.3rem;
     }
   }
   button.newgame {
