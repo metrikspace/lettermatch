@@ -176,14 +176,25 @@ div.top {
   h1.title {
     align-items: center;
     display: flex;
-    font-size: 10rem;
     font-weight: 600;
     justify-content: center;
+    @media only screen and (orientation: portrait) {
+      font-size: 10rem;
+    }
+    @media only screen and (orientation: landscape) {
+      font-size: 5rem;
+    }
   }
   button.newgame {
     font-weight: 600;
-    font-size: 3rem;
-    height: 8rem;
+    @media only screen and (orientation: portrait) {
+      font-size: 3rem;
+      height: 8rem;
+    }
+    @media only screen and (orientation: landscape) {
+      font-size: 2rem;
+      height: 4rem;
+    }
   }
 }
 h1.uppercase {
@@ -191,21 +202,26 @@ h1.uppercase {
   border: 1.5rem groove var(--colorthree);
   display: flex;
   font-weight: 400;
-  font-size: 20rem;
+  @media only screen and (orientation: portrait) {
+    font-size: 20rem;
+  }
+  @media only screen and (orientation: landscape) {
+    font-size: 10rem;
+  }
   justify-content: center;
   text-transform: uppercase;
 }
 div.matches {
   border: 1.5rem groove var(--colorthree);
   display: grid;
-  grid-template-rows: repeat(2, 1fr);
   grid-row-gap: 1rem;
+  grid-template-rows: repeat(2, 1fr);
+  padding: 0.5rem 1rem 1rem 0.5rem;
 }
 div.matchesRow {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 1rem;
-  padding: 1rem;
 }
 button.lowercase {
   box-shadow: 0.5rem 0.7rem 0.3rem rgba(0, 0, 0, 0.2);
@@ -223,7 +239,12 @@ button.lowercase {
   h1 {
     align-items: center;
     display: flex;
-    font-size: 7.5rem;
+    @media only screen and (orientation: portrait) {
+      font-size: 7.5rem;
+    }
+    @media only screen and (orientation: landscape) {
+      font-size: 3.75rem;
+    }
     font-weight: 600;
     height: 100%;
     justify-content: center;
@@ -246,7 +267,12 @@ button.answerzero {
   }
   h1 {
     font-weight: 500;
-    font-size: 7.5rem;
+    @media only screen and (orientation: portrait) {
+      font-size: 7.5rem;
+    }
+    @media only screen and (orientation: landscape) {
+      font-size: 3.75rem;
+    }
   }
 }
 .winning {
