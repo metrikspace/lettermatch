@@ -206,7 +206,7 @@ h1.uppercase {
     font-size: 20rem;
   }
   @media only screen and (orientation: landscape) {
-    font-size: 3rem;
+    font-size: 6rem;
   }
   justify-content: center;
   text-transform: uppercase;
