@@ -192,8 +192,8 @@ div.top {
       height: 8rem;
     }
     @media only screen and (orientation: landscape) {
-      font-size: 2rem;
-      height: 4rem;
+      font-size: 1.4rem;
+      height: 3rem;
     }
   }
 }
