@@ -182,7 +182,7 @@ div.top {
       font-size: 10rem;
     }
     @media only screen and (orientation: landscape) {
-      font-size: 2.3rem;
+      font-size: 3.4rem;
     }
   }
   button.newgame {
@@ -192,7 +192,7 @@ div.top {
       height: 8rem;
     }
     @media only screen and (orientation: landscape) {
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       height: 3rem;
     }
   }
@@ -206,7 +206,7 @@ h1.uppercase {
     font-size: 20rem;
   }
   @media only screen and (orientation: landscape) {
-    font-size: 10rem;
+    font-size: 6rem;
   }
   justify-content: center;
   text-transform: uppercase;
