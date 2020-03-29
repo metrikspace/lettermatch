@@ -1,0 +1,15 @@
+{
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/.git": true,
+    "**/.gitignore": true,
+    "**/.hg": true,
+    "**/.nuxt": true,
+    "**/.svn": true,
+    "**/CVS": true,
+    "**/README.md": true,
+    "**/dist": true,
+    "**/node_modules": true,
+    "**/package-lock.json": true
+  }
+}
