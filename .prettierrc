@@ -4,7 +4,7 @@
   "jsxBracketSameLine": true,
   "jsxSingleQuote": true,
   "printWidth": 80,
-  "proseWrap": "always",
+  "proseWrap": "preserve",
   "semi": true,
   "singleQuote": true,
   "tabWidth": 2,

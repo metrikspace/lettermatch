@@ -1,33 +1,31 @@
 <template>
   <div class="cage">
-    <h1 class="title">Letter Match Game</h1>
-    <h1 class="uppercase">{{uppercase[0]}}</h1>
+    <div class="top">
+      <h1 class="title" ref="title">{{title}}</h1>
+      <button @click="newGame" class="newgame" v-if="won">New Game</button>
+    </div>
+    <h1 class="uppercase">{{ gameset[0] }}</h1>
     <div class="matches">
       <div class="matchesRow">
         <button @click="check($refs.answerone)" class="lowercase">
-          <h1 ref="answerone">a</h1>
+          <h1 ref="answerone">{{ gameset[1] }}</h1>
         </button>
         <button @click="check($refs.answertwo)" class="lowercase">
-          <h1 ref="answertwo">b</h1>
+          <h1 ref="answertwo">{{ gameset[2] }}</h1>
         </button>
         <button @click="check($refs.answerthree)" class="lowercase">
-          <h1 ref="answerthree">c</h1>
+          <h1 ref="answerthree">{{ gameset[3] }}</h1>
         </button>
       </div>
       <div class="matchesRow">
-        <button @click="check($refs.answerone)" class="lowercase">
-          <h1 ref="answerone">e</h1>
+        <button @click="check($refs.answerfour)" class="lowercase">
+          <h1 ref="answerfour">{{ gameset[4] }}</h1>
         </button>
-        <button @click="check($refs.answertwo)" class="lowercase">
-          <h1 ref="answertwo">f</h1>
+        <button @click="check($refs.answerfive)" class="lowercase">
+          <h1 ref="answerfive">{{ gameset[5] }}</h1>
         </button>
-        <button @click="check($refs.answerthree)" class="lowercase">
-          <h1 ref="answerthree">g</h1>
-        </button>
-      </div>
-      <div class="matchesRow">
-        <button @click="check($refs.answerzero)" class="answerzero">
-          <h1 ref="answerzero">None</h1>
+        <button @click="check($refs.answersix)" class="lowercase">
+          <h1 ref="answersix">{{ gameset[6] }}</h1>
         </button>
       </div>
     </div>
@@ -37,6 +35,7 @@
 export default {
   data() {
     return {
+      gameset: [],
       lowercase: [
         'a',
         'b',
@@ -65,6 +64,7 @@ export default {
         'y',
         'z'
       ],
+      title: 'Letter Match Game',
       uppercase: [
         'A',
         'B',
@@ -92,44 +92,113 @@ export default {
         'X',
         'Y',
         'Z'
-      ]
+      ],
+      won: false
     };
   },
   methods: {
     check: function(ref) {
-      console.log(ref.innerText.toUpperCase());
+      if (this.$refs.title.innerHTML === 'Letter Match Game') {
+        if (this.gameset[0] === ref.innerHTML.toUpperCase()) {
+          ref.classList.add('winning');
+          this.title = 'Correct!';
+          this.won = true;
+        } else {
+          ref.classList.add('losing');
+        }
+      }
+    },
+    newGame: function() {
+      window.location.reload();
+    },
+    setLowercase: function() {
+      while (this.gameset.length <= 6) {
+        let value = Math.floor(Math.random() * 25);
+        if (this.gameset.indexOf(this.lowercase[value]) === -1)
+          this.gameset.push(this.lowercase[value]);
+      }
+      if (this.gameset.indexOf(this.gameset[0].toLowerCase()) === -1) {
+        let value = Math.floor(Math.random() * 6 + 1);
+        this.gameset[value] = this.gameset[0].toLowerCase();
+      }
+    },
+    setUppercase: function() {
+      let value = Math.floor(Math.random() * 25);
+      this.gameset.push(this.uppercase[value]);
     }
+  },
+  mounted() {
+    this.setUppercase();
+    this.setLowercase();
   }
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss" global>
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --colorone: #fc4445;
+  --colortwo: #3feee6;
+  --colorthree: #54bcc9;
+  --colorfour: #97caef;
+  --colorfive: #cafafe;
+  --winningcolor: green;
+  --losingcolor: red;
+}
+html {
+  -moz-osx-font-smoothing: grayscale;
+  -ms-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 10px;
+  word-spacing: 1px;
+}
 div.cage {
   border: 2.5rem groove var(--colorone);
   background-color: var(--colortwo);
   display: grid;
-  grid-template-rows: 25vh 25vh auto;
+  grid-template-rows: 25vh 25vh calc(50vh - 5rem);
   height: 100vh;
   width: 100vw;
 }
-h1.title {
-  align-items: center;
+div.top {
   border: 1.5rem groove var(--colorthree);
-  display: flex;
-  font-weight: 600;
-  justify-content: center;
+  display: grid;
+  grid-template-rows: auto min-content;
+  h1.title {
+    align-items: center;
+    display: flex;
+    font-size: 10rem;
+    font-weight: 600;
+    justify-content: center;
+  }
+  button.newgame {
+    font-weight: 600;
+    font-size: 3rem;
+    height: 8rem;
+  }
 }
 h1.uppercase {
   align-items: center;
   border: 1.5rem groove var(--colorthree);
   display: flex;
-  font-weight: 600;
+  font-weight: 400;
+  font-size: 20rem;
   justify-content: center;
   text-transform: uppercase;
 }
 div.matches {
   border: 1.5rem groove var(--colorthree);
   display: grid;
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   grid-row-gap: 1rem;
 }
 div.matchesRow {
@@ -139,29 +208,26 @@ div.matchesRow {
   padding: 1rem;
 }
 button.lowercase {
-  align-items: center;
   box-shadow: 0.5rem 0.7rem 0.3rem rgba(0, 0, 0, 0.2);
   border: 0.5rem solid var(--colorfour);
-  display: flex;
-  font-weight: 400;
-  justify-content: center;
   text-transform: lowercase;
   outline: none;
-  &:hover {
-    box-shadow: 0.5rem 1.2rem 0.5rem rgba(0, 0, 0, 0.4);
-    transform: translateY(-0.5rem);
-    transition: all 0.5s;
-  }
+  height: 100%;
+  width: 100%;
   &:focus {
     outline: none;
   }
   &::-moz-focus-inner {
     border: 0;
   }
-  &:active {
-    box-shadow: 0.5rem 0.4rem 1rem rgba(0, 0, 0, 0.1);
-    transform: translateY(0);
-    transition: all 0.5s;
+  h1 {
+    align-items: center;
+    display: flex;
+    font-size: 7.5rem;
+    font-weight: 600;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
   }
 }
 button.answerzero {
@@ -172,24 +238,23 @@ button.answerzero {
   grid-column: 1/ -1;
   justify-content: center;
   text-transform: capitalize;
-  &:hover {
-    box-shadow: 0.5rem 1.2rem 0.5rem rgba(0, 0, 0, 0.4);
-    transform: translateY(-0.5rem);
-    transition: all 0.5s;
-  }
   &:focus {
     outline: none;
   }
   &::-moz-focus-inner {
     border: 0;
   }
-  &:active {
-    box-shadow: 0.5rem 0.4rem 1rem rgba(0, 0, 0, 0.1);
-    transform: translateY(0);
-    transition: all 0.5s;
-  }
   h1 {
-    font-weight: 100;
+    font-weight: 500;
+    font-size: 7.5rem;
   }
+}
+.winning {
+  background-color: var(--winningcolor);
+  transition: background-color 1s;
+}
+.losing {
+  background-color: var(--losingcolor);
+  transition: background-color 1s;
 }
 </style>
